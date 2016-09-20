@@ -2,7 +2,8 @@ FROM debian:wheezy
 MAINTAINER hitsumabushi <hitsumabushi.org@gmail.com>
 
 ARG PHPIPAM_VERSION
-ARG APACHE_WEBROOT_DIR="/var/www/html"
+ARG APACHE_WEBROOT_DIR
+ENV APACHE_WEBROOT_DIR ${APACHE_WEBROOT_DIR:-/var/www/html}
 
 ENV APACHE_RUN_USER="www-data" \
     APACHE_RUN_GROUP="www-data" \
@@ -20,7 +21,7 @@ RUN DEBIAN_FRONTEND=noninteractive \
       apt-get update \
       && apt-get -y install apache2 libapache2-mod-php5 php5 php5-gmp php-pear php5-mysql php5-ldap vim curl \
       && a2enmod rewrite \
-      && mkdir "${APACHE_WEBROOT_DIR}" \
+      && mkdir -p "${APACHE_WEBROOT_DIR}" \
       && curl -sL "https://github.com/phpipam/phpipam/archive/${PHPIPAM_VERSION}.tar.gz" | tar -xzC "${APACHE_WEBROOT_DIR}" --strip-components=1 \
       && chown -R "${APACHE_RUN_USER}":"${APACHE_RUN_GROUP}" "${APACHE_WEBROOT_DIR}" \
       && apt-get clean \
