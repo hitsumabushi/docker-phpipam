@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+
+printenv
+
+./build_image.sh ${IMAGE_NAME}
+

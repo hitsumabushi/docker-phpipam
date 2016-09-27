@@ -18,5 +18,4 @@ docker build \
   --build-arg "PHPIPAM_VERSION=${PHPIPAM_VERSION}" \
   ${BUILD_ARGS} \
   -t ${TAG} \
-  -f dockerimages/phpipam/Dockerfile \
-  dockerimages/phpipam/
+  .
