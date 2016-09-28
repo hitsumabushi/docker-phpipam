@@ -27,7 +27,7 @@ RUN DEBIAN_FRONTEND=noninteractive \
       && apt-get clean \
       && rm -rf /var/lib/apt/lists/*
   
-COPY 000-default.conf /etc/apache2/site-enabled/default
+COPY 000-default.conf /etc/apache2/sites-available/default
 COPY config.php "${APACHE_WEBROOT_DIR}"
 
 ARG IMAGE_VCS_REF
