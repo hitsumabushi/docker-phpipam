@@ -22,4 +22,8 @@ services:
       - MYSQL_USER=phpipam
       - MYSQL_PASSWORD=db_password
     restart: always
+    volumes:
+      - phpipam-data-volume:/var/lib/mysql
 
+volumes:
+  phpipam-data-volume:
